@@ -1,0 +1,41 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+name = "MetaMancer"
+dynamic = ["version"]
+authors = [{name="Cody M Sommer", email="bassmastacod@gmail.com"}]
+description = "Manipulate File metadata like a wizard-engineer!"
+keywords = ["metadata", "reader", "writer", "parser", "extract", "edit", "exif", "iptc", "xmp", "file", "photo", "image", "jpeg", "jpg", "png", "tiff", "raw", "location", "gps", "geotag", "camera", "date", "time", "title", "comment", "label", "tag"]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["folium", "networkx", "cachetools", "piexif", "Pillow", "iptcinfo3"]
+license = {text = "MIT"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Typing :: Typed"
+]
+
+[project.urls]
+Repository = "https://github.com/BassMastaCod/MetaMancer.git"
+Issues = "https://github.com/BassMastaCod/MetaMancer/issues"
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pytest.ini_options]
+pythonpath = "metamancer"
+addopts = [
+    "--import-mode=importlib",
+]
