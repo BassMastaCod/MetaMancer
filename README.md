@@ -1,4 +1,4 @@
-![Logo](logo.jpg)
+![Logo](https://raw.githubusercontent.com/BassMastaCod/MetaMancer/refs/heads/master/logo.jpg)
 
 MetaMancer is a Python library for reading, writing, and manipulating metadata in files, specifically photos and videos.
 
