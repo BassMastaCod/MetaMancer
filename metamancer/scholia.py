@@ -3,10 +3,10 @@ from typing import Any, Optional
 
 from piexif import ImageIFD
 
-from apparatus import extract_date
-from exif_base import Exif
-from iptc import IPTC
-from xmp import XMP
+from metamancer.apparatus import extract_date
+from metamancer.exif_base import Exif
+from metamancer.iptc import IPTC
+from metamancer.xmp import XMP
 
 
 gps = {
