@@ -2,14 +2,10 @@ from typing import Optional, Union
 
 from iptcinfo3 import IPTCInfo, IPTCData
 
-from cacheable_data import CacheableData
+from metamancer.metadata import Metadata
 
 
-class IPTC(CacheableData):
-    def __init__(self, path):
-        super().__init__()
-        self._path = path
-
+class IPTC(Metadata):
     def _read_data(self) -> dict[str, Union[str, list[str]]]:
         info = {}
         for k, v in IPTCInfo(self._path)._data.items():

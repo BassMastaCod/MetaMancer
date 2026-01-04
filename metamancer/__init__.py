@@ -8,8 +8,8 @@ import folium
 import networkx
 from cachetools import TTLCache
 
-from apparatus import extract_date
-from scholia import Scholia
+from metamancer.apparatus import extract_date
+from metamancer.scholia import Scholia
 
 
 Coordinate = tuple[float, float]
@@ -179,9 +179,11 @@ class MetaMancer:
         return cls.codex[file]
 
     @classmethod
-    def is_cached(cls, file: Path) -> bool:
-        """Returns whether the Metadata of the given File is cached in memory."""
-        return file.resolve() in cls.codex
+    def is_cached(cls, key: Union[Path, str]) -> bool:
+        """Returns whether the given key is cached in memory."""
+        if isinstance(key, Path):
+            key = key.resolve()
+        return key in cls.codex
 
     @classmethod
     def cache(cls, file: Path) -> None:

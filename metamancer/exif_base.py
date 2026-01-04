@@ -6,14 +6,10 @@ from PIL import Image
 from PIL.Image import Transpose
 from piexif import TYPES
 
-from cacheable_data import CacheableData
+from metamancer.metadata import Metadata
 
 
-class Exif(CacheableData):
-    def __init__(self, path):
-        super().__init__()
-        self._path = path
-
+class Exif(Metadata):
     def _read_data(self) -> dict[str, Optional[Union[dict, bytes]]]:
         return piexif.load(str(self._path))
 

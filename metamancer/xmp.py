@@ -1,13 +1,9 @@
 from typing import Optional
 
-from cacheable_data import CacheableData
+from metamancer.metadata import Metadata
 
 
-class XMP(CacheableData):
-    def __init__(self, path):
-        super().__init__()
-        self._path = path
-
+class XMP(Metadata):
     def _read_data(self) -> dict[str, bytes]:
         with open(self._path, 'rb') as fh:
             raw = fh.read()
