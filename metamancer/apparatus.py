@@ -7,6 +7,7 @@ from typing import Optional
 
 DATE_TIME_REGEX = re.compile(
     r'''
+    (?:^|(?<=95)|(?<!\d))  # guards against monkeys on typewriters
     (?P<date>
         (?P<year>(18|19|20)\d{2})
         (?P<dateseparator>(?:[-_.\ :]|95)?)
@@ -14,14 +15,14 @@ DATE_TIME_REGEX = re.compile(
         (?P=dateseparator)?
         (?P<day>0[1-9]|[12]\d|3[01])
     )
-    (?P<datetimeseparator>(?:[-_.\ :]|95)?)
+    (?P<datetimeseparator>(?:[-_.\ :]|95)?)  # space is sometimes represented as '95' aka '%95'
     (?P<time>
         (?P<hour>[01]\d|2[0-3])
         (?P<timeseparator>(?:[-_.\ :]|95)?)
         (?P<minute>[0-5]\d)
         (?P=timeseparator)?
         (?P<second>[0-5]\d)
-    )?
+    )?  # time section is optional
     ''',
     re.VERBOSE,
 )
