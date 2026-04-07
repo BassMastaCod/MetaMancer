@@ -50,13 +50,24 @@ class SpatialStrata:
 
         self._nested_files[first].add(rest, file)
 
-    def add_files(self, *files: Union[Path, str]) -> None:
+    def add_files(self, *files: Path) -> None:
         self._direct_files.extend(files)
 
     def nest_stratum(self, stratum: 'SpatialStrata') -> None:
         if stratum.name in self._nested_files:
             raise ValueError(f'Stratum with name "{stratum.name}" already exists within "{self.name}"')
         self._nested_files[stratum.name] = stratum
+
+    def print(self, indent: int = 0) -> None:
+        """Helper function to print the structure of a taxonomy for debugging."""
+        print(' ' * indent + f'Taxonomy: {self.name}')
+        print(' ' * indent + f'Direct files: {len(self._direct_files)}')
+        for file in self._direct_files:
+            print(' ' * (indent + 2) + file.name)
+        print(' ' * indent + f'Nested taxonomies: {len(self._nested_files)}')
+        for name, nested in self._nested_files.items():
+            print(' ' * (indent + 2) + f'Nested: {name}')
+            self.print(indent + 4)
 
 
 class TerraSage:
