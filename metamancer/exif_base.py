@@ -23,8 +23,10 @@ class Exif(Metadata):
             value = self.data()[ifd][tag]
             data_type = get_type(ifd, tag)
             if data_type == TYPES.Byte:
+                if isinstance(value, (tuple, list)):
+                    value = bytes(value)
                 encoding = 'utf-16le' if tag in (40091, 40092, 40093, 40094, 40095) else 'utf-8'
-                return value.decode(encoding)
+                return value.decode(encoding).rstrip('\x00')
             elif data_type == TYPES.Ascii:
                 return value.decode('ascii').rstrip('\x00')
             elif data_type == TYPES.Short:
